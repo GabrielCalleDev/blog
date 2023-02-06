@@ -11,6 +11,7 @@ php artisan make:controller Admin/CategoriesController
 
 # Modelos
 php artisan make:model Category -m
+php artisan make:model Post -m
 
 php artisan migrate
 
