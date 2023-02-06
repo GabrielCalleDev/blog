@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Administración de blog</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Blog de strateying
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -73,7 +73,28 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <div class="row justify-content-center">
+                    
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-header">{{ __('Menú') }}</div>
+
+                            <div class="card-body">
+                                <ul>
+                                    <li><a href="{{ route('admin.categories.index') }}">Categorías</a></li>
+                                    <li><a href="{{ route('admin.posts.index') }}">Posts</a></li>
+                                    <li><a href="{{ route('admin.users.index') }}">Usuarios</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>
