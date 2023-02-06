@@ -43,6 +43,12 @@ Route::delete('/admin/categories/delete/{id}', [CategoriesController::Class, 'de
 |--------------------------------------------------------------------------
 */
 Route::get('/admin/posts', [PostsController::Class, 'index'])->name('admin.posts.index');
+Route::get('/admin/posts/new', [PostsController::Class, 'new'])->name('admin.posts.new');
+Route::post('/admin/posts/store', [PostsController::Class, 'store'])->name('admin.posts.store');
+Route::get('/admin/posts/edit/{id}', [PostsController::Class, 'edit'])->name('admin.posts.edit');
+Route::post('/admin/posts/update/{id}', [PostsController::Class, 'update'])->name('admin.posts.update');
+Route::delete('/admin/posts/delete/{id}', [PostsController::Class, 'delete'])->name('admin.posts.delete');
+
 
 /*-------------------------------------------------------------------------
 | Usuarios
