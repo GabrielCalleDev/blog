@@ -35,13 +35,13 @@
                 <tbody>
                 @foreach ( $posts as $post )
                     <tr>
-                        <th>{{ $post->id }}</th>
-                        <th>{{ $post->category->category_name }}</th>
-                        <th>{{ $post->post }}</th>
-                        <th>{{ $post->content }}</th>
-                        <th><img src="{{ asset($post->image) }}" alt="{{ $post->post }}" class="img-fluid img-thumbnail" with="100"></th>
-                        <th>{{ $post->author }}</th>
-                        <th>
+                        <td>{{ $post->id }}</td>
+                        <td>{{ $post->category->category_name }}</td>
+                        <td>{{ $post->post }}</td>
+                        <td>{{ $post->content }}</td>
+                        <td><img src="{{ asset($post->image) }}" alt="{{ $post->post }}" class="img-fluid img-thumbnail" width="120"></td>
+                        <td>{{ $post->author }}</td>
+                        <td>
                             <a class="d-inline-flex text-decoration-none mb-1" href="{{ route('admin.posts.edit', $post->id) }}"><button class="btn btn-warning">Editar</button></a>
                             <form class="d-inline-flex" action="{{ route('admin.posts.delete', $post->id) }}" method="post">
                                 @csrf
@@ -49,7 +49,7 @@
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
                             
-                        </th>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

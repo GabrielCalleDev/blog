@@ -34,7 +34,8 @@
                     <input type="text" class="form-control mb-2" name="author"  id="author" placeholder="Introduce un autor" value="{{ old('author', $post->author) }}">
                     <label for="image" class="mb-2">Imagen</label>
                     <input type="file" class="form-control mb-2" name="image"  id="image">
-
+                    <small>Imagen actual</small>
+                    <img src="{{ asset($post->image) }}" alt="{{ $post->post }}" class="img-fluid img-thumbnail" width="50">
                     <button type="submit" class="btn btn-success">Editar post</button>
                     <a class="btn btn-danger" href="{{ route('admin.posts.index') }}">Cancelar</a>
                 </form>
