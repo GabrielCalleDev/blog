@@ -19,3 +19,7 @@ php artisan migrate
 # Rutas
 
 # Migraciones
+
+
+php artisan storage:link
+

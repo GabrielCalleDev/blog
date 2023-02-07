@@ -33,11 +33,15 @@ class HomeController extends Controller
         ]);
     }
 
-    public function post()
+    public function post($postId)
     {
         $categories = Category::all();
+        $latestPosts = Post::orderBy('id','DESC')->take(3)->get();
+        $post = Post::find($postId);
         return view('post', [
             'categories' => $categories,
+            'post' => $post,
+            'latestPosts' => $latestPosts
         ]);
     }
 

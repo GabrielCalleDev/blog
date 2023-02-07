@@ -7,54 +7,37 @@
         <div class="row justify-content-center">
             <!-- Post -->
             <div class="col-12 col-md-7 text-center">
-                <h1>CSS3 con Javascript</h1>
+                <h1>{{ $post->post }}</h1>
                 <hr>
-                <img src="{{ Vite::asset('resources/images/blog/7.png') }}" alt="Post Javascript" class="img-fluid">
+                <img src="{{ asset($post->image) }}" alt="{{ $post->post }}" class="img-fluid">
 
                 <p class="text-left mt-3 post-txt">
-                    <span>Autor: YouDevs</span>
-                    <span class="float-right">Publicado: Hace 2 semanas</span>
+                    <span style="color:black;">Autor: {{ $post->author }}</span>
+                    <span class="float-right">Publicado: {{ $post->created_at->diffForHumans() }}</span>
                 </p>
                 <p class="text-left">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Eaque nemo accusantium libero hic repellat corporis assumenda
-                    debitis adipisci modi expedita inventore vel excepturi,
-                    facere animi accusamus? Voluptatem ab ad harum?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Eaque nemo accusantium libero hic repellat corporis assumenda
-                    debitis adipisci modi expedita inventore vel excepturi,
-                    facere animi accusamus? Voluptatem ab ad harum?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Eaque nemo accusantium libero hic repellat corporis assumenda
-                    debitis adipisci modi expedita inventore vel excepturi,
-                    facere animi accusamus? Voluptatem ab ad harum?
+                    {{ $post->content }}
                 </p>
-                <p class="text-left post-txt"><i>Categoría: Desarrollo web</i></p>
+                <p class="text-left post-txt"><i>Categoría: {{ $post->category->category_name }}</i></p>
             </div>
+            <!-- fin Post -->
+
 
             <!-- Entradas recientes -->
             <div class="col-md-3 offset-md-1">
                 <p>Últimas entradas</p>
-                <div class="row mb-4">
-                    <div class="col-4 p-0">
-                        <a href="#">
-                            <img src="{{ Vite::asset('resources/images/blog/3.png') }}" class="img-fluid rounded" width="100" alt="">
-                        </a>
+                @foreach ($latestPosts as $post)
+                    <div class="row mb-4">
+                        <div class="col-4 p-0">
+                            <a href="{{ route('post', $post->id) }}">
+                                <img src="{{ asset($post->image) }}" class="img-fluid rounded" width="100" alt="{{$post->post}}">
+                            </a>
+                        </div>
+                        <div class="col-7 pl-0">
+                            <a href="{{ route('post', $post->id) }}" class="link-post">{{$post->post}}</a>
+                        </div>
                     </div>
-                    <div class="col-7 pl-0">
-                        <a href="#" class="link-post">Aprende Python en un dos tres</a>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-4 p-0">
-                        <a href="#">
-                            <img src="{{ Vite::asset('resources/images/blog/5.png') }}" class="img-fluid rounded" width="100" alt="">
-                        </a>
-                    </div>
-                    <div class="col-7 pl-0">
-                        <a href="#" class="link-post">PHP sigue vivito y coleando</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
         </div>

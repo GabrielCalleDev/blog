@@ -14,7 +14,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/posts/{category}', [HomeController::class, 'postsByCategory'])->name('posts.category');
-Route::get('/post', [HomeController::class, 'post'])->name('post');
+Route::get('/post/{postId}', [HomeController::class, 'post'])->name('post');
 
 Route::get('/admin', function(){
     return view('admin');
