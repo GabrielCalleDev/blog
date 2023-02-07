@@ -1,4 +1,9 @@
 {
+  "resources/sass/styles.sass": {
+    "file": "assets/styles-8642c024.css",
+    "src": "resources/sass/styles.sass",
+    "isEntry": true
+  },
   "resources/sass/app.scss": {
     "file": "assets/app-67dcdfd2.css",
     "src": "resources/sass/app.scss",
