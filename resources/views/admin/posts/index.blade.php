@@ -38,7 +38,7 @@
                         <td>{{ $post->id }}</td>
                         <td>{{ $post->category->category_name }}</td>
                         <td>{{ $post->post }}</td>
-                        <td>{{ $post->content }}</td>
+                        <td></td>
                         <td><img src="{{ asset($post->image) }}" alt="{{ $post->post }}" class="img-fluid img-thumbnail" width="120"></td>
                         <td>{{ $post->author }}</td>
                         <td>

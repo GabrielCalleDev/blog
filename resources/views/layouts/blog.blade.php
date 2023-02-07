@@ -16,14 +16,28 @@
     <!-- Logo -->
     <nav class="navbar navbar-light bg-main">
         <div class="container p-2">
-            <a class="navbar-brand m-auto" href="#">
+            <a class="navbar-brand m-auto" href="{{ route('home') }}">
                 <img src="{{ Vite::asset('resources/images/blog/logo.png') }}" height="80" alt="" loading="lazy">
             </a>
         </div>
     </nav>
     
     <!-- Contenido -->
-    @yield('content')
+    <section class="container-fluid content">
+        <!-- Categorías -->
+        <div class="row justify-content-center">
+            <div class="col-10 col-md-12">
+                <nav class="text-center my-3">
+                    <a href="{{ route('home') }}" class="mx-3 pb-3 link-category d-block d-md-inline {{ isset($categoryIdSelected) ? '':'selected-category' }}" >Todas</a>
+                    @foreach ($categories as $category)
+                        <a href="{{ route('posts.category', $category->category_name) }}" class="mx-3 pb-3 link-category d-block d-md-inline {{ (isset($categoryIdSelected)&& $category->id == $categoryIdSelected )? 'selected-category':'' }}" >{{ $category->category_name }}</a>
+                    @endforeach
+                </nav>
+            </div>
+        </div>
+
+        @yield('content')
+    </section>
 
     <!-- Footer -->
     <footer class="container-fluid bg-main">

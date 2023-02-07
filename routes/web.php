@@ -4,28 +4,21 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Home
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/post', [App\Http\Controllers\HomeController::class, 'post'])->name('post');
-
-
+Route::get('/posts/{category}', [HomeController::class, 'postsByCategory'])->name('posts.category');
+Route::get('/post', [HomeController::class, 'post'])->name('post');
 
 Route::get('/admin', function(){
     return view('admin');
 })->middleware('auth');
-
 
 /*-------------------------------------------------------------------------
 | Categorías
@@ -48,7 +41,6 @@ Route::post('/admin/posts/store', [PostsController::Class, 'store'])->name('admi
 Route::get('/admin/posts/edit/{id}', [PostsController::Class, 'edit'])->name('admin.posts.edit');
 Route::post('/admin/posts/update/{id}', [PostsController::Class, 'update'])->name('admin.posts.update');
 Route::delete('/admin/posts/delete/{id}', [PostsController::Class, 'delete'])->name('admin.posts.delete');
-
 
 /*-------------------------------------------------------------------------
 | Usuarios
