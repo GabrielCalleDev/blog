@@ -31,7 +31,18 @@ class PostsController extends Controller
 
         $post = new Post();
 
+        if ($request->hasFile('image')){
+            $file = $request->file('image');
+            $destinationPath = 'images/posts/';
+            $filename = time().'-'.$file->getClientOriginalName();
+            $uploadSuccess = $request->file('image')->move($destinationPath, $filename);
+            // Guardamos la ruta en la base de datos
+            $post->image = $destinationPath . $filename;
+        }
         $post->post = $request->post;
+        $post->category_id = $request->category_id;
+        $post->content = $request->content;
+        $post->author = $request->author;
         $post->save();
         
         return redirect()->route('admin.posts.index');
@@ -39,17 +50,25 @@ class PostsController extends Controller
 
     public function edit($id){
         $post = Post::find($id);
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     public function update(Request $request, $id){
-        $request->validate([
-            'post' => 'required|unique:posts|max:100',
-        ]);
-        
+                
         $post = Post::find($id);
-
-        $post->post = $request->input('post');
+        if ($request->hasFile('image')){
+            $file = $request->file('image');
+            $destinationPath = 'images/posts/';
+            $filename = time().'-'.$file->getClientOriginalName();
+            $uploadSuccess = $request->file('image')->move($destinationPath, $filename);
+            // Guardamos la ruta en la base de datos
+            $post->image = $destinationPath . $filename;
+        }
+        $post->post = $request->post;
+        $post->category_id = $request->category_id;
+        $post->content = $request->content;
+        $post->author = $request->author;
         $post->save();
 
         return redirect()->route('admin.posts.index')->with('success', 'Post actualizado con éxito.');

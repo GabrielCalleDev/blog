@@ -76,6 +76,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     
+                    @auth
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-header">{{ __('Menú') }}</div>
@@ -89,7 +90,7 @@
                             </div>
                         </div>
                     </div>
-
+                    @endauth
                     <div class="col-md-9">
                         @yield('content')
                     </div>

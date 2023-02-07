@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card">
-    <div class="card-header">{{ __('Administración del blog') }}</div>
+    <div class="card-header">{{ __('Categorías del blog') }}</div>
 
     <div class="card-body">
         @if (session('success'))

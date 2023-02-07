@@ -17,7 +17,7 @@
                     </div>
                 @endif
                 <!-- Formulario de post -->
-                <form action="{{ route('admin.posts.store') }}" method="POST">
+                <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <label for="title" class="mb-2">Titulo de post</label>
                     <input type="text" class="form-control mb-2" name="post"  id="title" placeholder="Introduce un titulo">
@@ -32,6 +32,9 @@
                     <textarea type="text" class="form-control mb-2" name="content" id="content"  placeholder="Introduce el contenido de tu post"></textarea>
                     <label for="author" class="mb-2">Autor</label>
                     <input type="text" class="form-control mb-2" name="author"  id="author" placeholder="Introduce un autor">
+                    <label for="image" class="mb-2">Imagen</label>
+                    <input type="file" class="form-control mb-2" name="image"  id="image">
+
 
                     <button type="submit" class="btn btn-primary">Crear post</button>
                     <a class="btn btn-danger" href="{{ route('admin.posts.index') }}">Cancelar</a>
