@@ -1,4 +1,44 @@
 {
+  "resources/images/blog/3.png": {
+    "file": "assets/3-4ba99450.png",
+    "src": "resources/images/blog/3.png"
+  },
+  "resources/images/blog/4.png": {
+    "file": "assets/4-196290da.png",
+    "src": "resources/images/blog/4.png"
+  },
+  "resources/images/blog/5.png": {
+    "file": "assets/5-efb2bc11.png",
+    "src": "resources/images/blog/5.png"
+  },
+  "resources/images/blog/6.png": {
+    "file": "assets/6-2bb57e01.png",
+    "src": "resources/images/blog/6.png"
+  },
+  "resources/images/blog/facebook.png": {
+    "file": "assets/facebook-1c994475.png",
+    "src": "resources/images/blog/facebook.png"
+  },
+  "resources/images/blog/7.png": {
+    "file": "assets/7-c1902ce9.png",
+    "src": "resources/images/blog/7.png"
+  },
+  "resources/images/blog/instagram.png": {
+    "file": "assets/instagram-06adc073.png",
+    "src": "resources/images/blog/instagram.png"
+  },
+  "resources/images/blog/logo.png": {
+    "file": "assets/logo-afb37c6b.png",
+    "src": "resources/images/blog/logo.png"
+  },
+  "resources/images/blog/twitter.png": {
+    "file": "assets/twitter-8ee0deaf.png",
+    "src": "resources/images/blog/twitter.png"
+  },
+  "resources/images/blog/youtube.png": {
+    "file": "assets/youtube-04b8cda0.png",
+    "src": "resources/images/blog/youtube.png"
+  },
   "resources/sass/styles.sass": {
     "file": "assets/styles-8642c024.css",
     "src": "resources/sass/styles.sass",
