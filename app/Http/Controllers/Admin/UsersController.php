@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 
 class UsersController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
+        $this->middleware('role:admin');
     }
 
     public function index(){
@@ -20,7 +22,8 @@ class UsersController extends Controller
     }
 
     public function new(){
-        return view('admin.users.new');
+        $roles = Role::all();
+        return view('admin.users.new', [ 'roles' => $roles ]);
     }
 
     public function store(Request $request){
@@ -28,7 +31,7 @@ class UsersController extends Controller
             'name'     => 'required|max:100',
             'email'    => 'required|unique:users|max:100',
             'password' => 'required|confirmed',
-            'role'     => 'required',
+            'role_id'  => 'required',
         ]);
 
         $user = new User();
@@ -36,7 +39,7 @@ class UsersController extends Controller
         $user->name     = $request->name;
         $user->email    = $request->email;
         $user->password = $request->password;
-        $user->role     = $request->role;
+        $user->role_id  = $request->role_id;
         $user->save();
         
         return redirect()->route('admin.users.index');
@@ -44,19 +47,23 @@ class UsersController extends Controller
 
     public function edit($id){
         $user = User::find($id);
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::all();
+        return view('admin.users.edit', [
+            'user' => $user,
+            'roles' => $roles
+        ]);
     }
 
     public function update(Request $request, $id){
         $request->validate([
             'name'     => 'required|max:100',
-            'role'     => 'required',
+            'role_id'  => 'required',
         ]);
 
         $user = User::find($id);
 
-        $user->name     = $request->name;
-        $user->role     = $request->role;
+        $user->name    = $request->name;
+        $user->role_id = $request->role_id;
         $user->save();
         
         return redirect()->route('admin.users.index')->with('success', 'Usuario actualizado con éxito.');

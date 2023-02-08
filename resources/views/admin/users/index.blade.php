@@ -36,7 +36,7 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->role }}</td>
+                        <td>{{ $user->role->name }}</td>
                         <td>
                             <a class="d-inline-flex text-decoration-none" href="{{ route('admin.users.edit', $user->id) }}"><button class="btn btn-warning">Editar</button></a>
                             <form class="d-inline-flex" action="{{ route('admin.users.delete', $user->id) }}" method="post">

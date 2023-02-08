@@ -85,12 +85,15 @@
                                 <ul>
                                     <li><a href="{{ route('admin.categories.index') }}">Categorías</a></li>
                                     <li><a href="{{ route('admin.posts.index') }}">Posts</a></li>
+                                    @if( Auth::user()->role_id == 1)
                                     <li><a href="{{ route('admin.users.index') }}">Usuarios</a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
                     </div>
                     @endauth
+
                     <div class="col-md-9">
                         @yield('content')
                     </div>

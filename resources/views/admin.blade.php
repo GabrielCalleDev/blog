@@ -10,6 +10,11 @@
                     {{ session('status') }}
                 </div>
             @endif
+            @if (session('alert'))
+                <div class="alert alert-warning">
+                    {{ session('alert') }}
+                </div>
+            @endif
 
             {{ __('Estás logueado correctamente') }}
         </div>

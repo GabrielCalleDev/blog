@@ -26,7 +26,11 @@ class PostsController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'post' => 'required|max:255',
+            'post'        => 'required|max:255',
+            'category_id' => 'required',
+            'image'        => 'required',
+            'content'     => 'required',
+            'author'      => 'required'
         ]);
 
         $post = new Post();

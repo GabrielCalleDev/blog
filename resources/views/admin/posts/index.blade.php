@@ -26,7 +26,6 @@
                         <th>ID</th>
                         <th>Categoría</th>
                         <th>Post</th>
-                        <th>Contenido</th>
                         <th>Imagen</th>
                         <th>Author</th>
                         <th>Acciones</th>
@@ -38,7 +37,6 @@
                         <td>{{ $post->id }}</td>
                         <td>{{ $post->category->category_name }}</td>
                         <td>{{ $post->post }}</td>
-                        <td></td>
                         <td><img src="{{ asset($post->image) }}" alt="{{ $post->post }}" class="img-fluid img-thumbnail" width="120"></td>
                         <td>{{ $post->author }}</td>
                         <td>

@@ -13,13 +13,14 @@ use App\Http\Controllers\HomeController;
 |--------------------------------------------------------------------------
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::redirect('/home', '/admin');
 
 Route::get('/posts/{category}', [HomeController::class, 'postsByCategory'])->name('posts.category');
 Route::get('/post/{postId}', [HomeController::class, 'post'])->name('post');
 
 Route::get('/admin', function(){
     return view('admin');
-})->middleware('auth');
+})->middleware('auth')->name("admin");
 
 /*-------------------------------------------------------------------------
 | Categorías
