@@ -12,14 +12,15 @@ php artisan make:controller Admin/CategoriesController
 # Modelos
 php artisan make:model Category -m
 php artisan make:model Post -m
-php artisan make:migration add_image_field_to_posts
 
 php artisan migrate
 
 # Rutas
 
 # Migraciones
+php artisan make:migration add_image_field_to_posts
+php artisan make:migration add_role_to_users_table
 
-
+# Archivos
 php artisan storage:link
 

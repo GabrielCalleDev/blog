@@ -85,7 +85,7 @@
                                 <ul>
                                     <li><a href="{{ route('admin.categories.index') }}">Categorías</a></li>
                                     <li><a href="{{ route('admin.posts.index') }}">Posts</a></li>
-                                    {{-- <li><a href="{{ route('admin.users.index') }}">Usuarios</a></li> --}}
+                                    <li><a href="{{ route('admin.users.index') }}">Usuarios</a></li>
                                 </ul>
                             </div>
                         </div>
