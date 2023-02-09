@@ -43,7 +43,7 @@
     <footer class="container-fluid bg-main">
         <div class="row text-center p-4">
             <div class="mb-3">
-                <img src="{{ Vite::asset('resources/images/blog/logo.png') }}" alt="Strategying logo" width="120" id="logofooter">
+                <a href="{{ route('login') }}"><img src="{{ Vite::asset('resources/images/blog/logo.png') }}" alt="Strategying logo" width="120" id="logofooter"></a>
             </div>
             <div id="col-md-10">
                 <a href="https://www.facebook.com/strategying" target="_blank">

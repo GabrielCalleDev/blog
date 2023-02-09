@@ -7,7 +7,7 @@
     <div class="col-11 col-xl-9">
         <div class="row">
             <!-- Posts -->
-            @foreach ($posts as $post)
+            @forelse ($posts as $post)
             <div class="col-md-6 col-lg-4 col-12 justify-content-center mb-5">
                 <div class="card m-auto" style="width: 18rem;">
                     <img class="card-img-top" src="{{ asset($post->image) }}" alt="{{ $post->post }}">
@@ -33,7 +33,14 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+
+            @empty
+                <div class="d-flex justify-content-center mb-5">
+                    <div class="p-3 mx-5 border border-warning rounded-4 w-75 text-center">
+                        <p class="m-0">No hay posts publicados</p>
+                    </div>
+                </div>
+            @endforelse
         </div>
     </div>
 
