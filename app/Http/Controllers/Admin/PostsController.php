@@ -28,7 +28,7 @@ class PostsController extends Controller
         $request->validate([
             'post'        => 'required|max:255',
             'category_id' => 'required',
-            'image'        => 'required',
+            'image'       => 'required',
             'content'     => 'required',
             'author'      => 'required'
         ]);
@@ -36,24 +36,24 @@ class PostsController extends Controller
         $post = new Post();
 
         if ($request->hasFile('image')){
-            $file = $request->file('image');
+            $file            = $request->file('image');
             $destinationPath = 'images/posts/';
-            $filename = time().'-'.$file->getClientOriginalName();
-            $uploadSuccess = $request->file('image')->move($destinationPath, $filename);
-            // Guardamos la ruta en la base de datos
+            $filename        = time().'-'.$file->getClientOriginalName();
+            $request->file('image')->move($destinationPath, $filename);
+              // Guardamos la ruta en la base de datos
             $post->image = $destinationPath . $filename;
         }
-        $post->post = $request->post;
+        $post->post        = $request->post;
         $post->category_id = $request->category_id;
-        $post->content = $request->content;
-        $post->author = $request->author;
+        $post->content     = $request->content;
+        $post->author      = $request->author;
         $post->save();
         
         return redirect()->route('admin.posts.index');
     }
 
     public function edit($id){
-        $post = Post::find($id);
+        $post       = Post::find($id);
         $categories = Category::all();
         return view('admin.posts.edit', compact('post', 'categories'));
     }
@@ -62,17 +62,17 @@ class PostsController extends Controller
                 
         $post = Post::find($id);
         if ($request->hasFile('image')){
-            $file = $request->file('image');
+            $file            = $request->file('image');
             $destinationPath = 'images/posts/';
-            $filename = time().'-'.$file->getClientOriginalName();
-            $uploadSuccess = $request->file('image')->move($destinationPath, $filename);
+            $filename        = time().'-'.$file->getClientOriginalName();
+            $request->file('image')->move($destinationPath, $filename);
             // Guardamos la ruta en la base de datos
             $post->image = $destinationPath . $filename;
         }
-        $post->post = $request->post;
+        $post->post        = $request->post;
         $post->category_id = $request->category_id;
-        $post->content = $request->content;
-        $post->author = $request->author;
+        $post->content     = $request->content;
+        $post->author      = $request->author;
         $post->save();
 
         return redirect()->route('admin.posts.index')->with('success', 'Post actualizado con éxito.');

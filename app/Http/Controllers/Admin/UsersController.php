@@ -47,18 +47,18 @@ class UsersController extends Controller
     }
 
     public function edit($id){
-        $user = User::find($id);
+        $user  = User::find($id);
         $roles = Role::all();
         return view('admin.users.edit', [
-            'user' => $user,
+            'user'  => $user,
             'roles' => $roles
         ]);
     }
 
     public function update(Request $request, $id){
         $request->validate([
-            'name'     => 'required|max:100',
-            'role_id'  => 'required',
+            'name'    => 'required|max:100',
+            'role_id' => 'required',
         ]);
 
         $user = User::find($id);

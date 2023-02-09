@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $posts = Post::all();
+        $posts      = Post::all();
         return view('posts', [
             'categories' => $categories,
             'posts' => $posts
@@ -35,25 +35,25 @@ class HomeController extends Controller
 
     public function post($postId)
     {
-        $categories = Category::all();
+        $categories  = Category::all();
         $latestPosts = Post::orderBy('id','DESC')->take(3)->get();
-        $post = Post::find($postId);
+        $post        = Post::find($postId);
         return view('post', [
-            'categories' => $categories,
-            'post' => $post,
+            'categories'  => $categories,
+            'post'        => $post,
             'latestPosts' => $latestPosts
         ]);
     }
 
     public function postsByCategory($category){
-        $categories = Category::all();
-        $category = Category::where('category_name', '=', $category)->first();
+        $categories         = Category::all();
+        $category           = Category::where('category_name', '=', $category)->first();
         $categoryIdSelected = $category->id;
         $posts = Post::where('category_id', '=', $categoryIdSelected)->get();
         return view('posts', [
-            'categories' => $categories,
-            'posts' => $posts,
-            'categoryIdSelected' => $categoryIdSelected
+            'categoryIdSelected' => $categoryIdSelected,
+            'categories'         => $categories,
+            'posts'              => $posts
         ]);
     }
 }

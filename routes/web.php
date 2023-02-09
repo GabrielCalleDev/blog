@@ -18,6 +18,8 @@ Route::redirect('/home', '/admin');
 Route::get('/posts/{category}', [HomeController::class, 'postsByCategory'])->name('posts.category');
 Route::get('/post/{postId}', [HomeController::class, 'post'])->name('post');
 
+
+// Middleware '/admin'
 Route::get('/admin', function(){
     return view('admin');
 })->middleware('auth')->name("admin");
