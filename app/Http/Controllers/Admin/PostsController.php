@@ -59,7 +59,13 @@ class PostsController extends Controller
     }
 
     public function update(Request $request, $id){
-                
+        $request->validate([
+            'post'        => 'required|max:255',
+            'category_id' => 'required',
+            'content'     => 'required',
+            'author'      => 'required'
+        ]);
+
         $post = Post::find($id);
         if ($request->hasFile('image')){
             $file            = $request->file('image');
