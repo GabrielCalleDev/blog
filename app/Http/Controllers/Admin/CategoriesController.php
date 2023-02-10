@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Validation\Rule;
 
 class CategoriesController extends Controller
 {
@@ -41,7 +42,8 @@ class CategoriesController extends Controller
 
     public function update(Request $request, $id){
         $request->validate([
-            'category_name' => 'required|unique:categories|max:100',
+            'category_name' => 'required|max:100',
+            Rule::unique('categories', 'category_name')->ignore($request->category_name)
         ]);
         
         $category = Category::find($id);
