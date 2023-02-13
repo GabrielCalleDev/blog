@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Post;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 use App\Models\Post;
 use App\Models\Category;
 
@@ -11,6 +12,7 @@ use App\Models\Category;
 class PostComponent extends Component
 {
     use WithPagination;
+    use WithFileUploads;
 
     public $view = 'create';
 
@@ -32,12 +34,14 @@ class PostComponent extends Component
             'post'        => 'required',
             'category_id' => 'required',
             'content'     => 'required',
+            'image'       => 'required',
             'author'      => 'required'
         ]);
         Post::create([
             'post'        => $this->post,
             'category_id' => $this->category_id,
             'content'     => $this->content,
+            'image'       => $this->image->store('posts', 'public'),
             'author'      => $this->author
         ]);
         session()->flash('success', 'Post Created Successfully.');
@@ -69,8 +73,6 @@ class PostComponent extends Component
         
 
         $post = Post::find($this->post_id);
-
-        // dd($post);
 
         $post->update([
             'post'        => $this->post,

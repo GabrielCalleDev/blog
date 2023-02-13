@@ -39,7 +39,7 @@
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->category->category_name }}</td>
                             <td>{{ $post->post }}</td>
-                            <td><img src="{{ asset($post->image) }}" alt="{{ $post->post }}" class="img-fluid img-thumbnail" width="120"></td>
+                            <td>{{ $post->image }}<img src="{{ Vite::asset("public/storage/".$post->image) }}" alt="{{ $post->post }}" class="img-fluid img-thumbnail" width="120"></td>
                             <td>{{ $post->author }}</td>
                             <td>
                                 <button type="button" class="btn btn-outline-success mt-1" wire:click='edit({{ $post->id }})'>Editar</button>
