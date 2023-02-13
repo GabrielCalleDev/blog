@@ -14,8 +14,12 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
+    public function livewire(){
+        return view('admin.posts.livewire');
+    }
+
     public function index(){
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->get();
         return view('admin.posts.index', [ 'posts' => $posts ]);
     }
 

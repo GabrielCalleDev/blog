@@ -39,6 +39,7 @@ Route::delete('/admin/categories/delete/{id}', [CategoriesController::class, 'de
 | Posts
 |--------------------------------------------------------------------------
 */
+Route::get('/admin/posts/livewire', [PostsController::class, 'livewire'])->name('admin.posts.livewire');
 Route::get('/admin/posts', [PostsController::class, 'index'])->name('admin.posts.index');
 Route::get('/admin/posts/new', [PostsController::class, 'new'])->name('admin.posts.new');
 Route::post('/admin/posts/store', [PostsController::class, 'store'])->name('admin.posts.store');

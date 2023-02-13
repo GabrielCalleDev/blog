@@ -17,6 +17,7 @@
         @endif
 
         <a href="{{ route('admin.posts.new') }}"><button class="btn btn-success">Crear post</button></a>
+        <a href="{{ route('admin.posts.livewire') }}"><button class="btn btn-outline-success">Gestionar con livewire</button></a>
         <hr>
         Listado de posts
         <div class="table-responsive">

@@ -15,6 +15,9 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <!-- Livewire scripts -->
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -77,7 +80,7 @@
                 <div class="row justify-content-center">
                     
                     @auth
-                    <div class="col-md-3">
+                    <div class="col-lg-2">
                         <div class="card">
                             <div class="card-header">{{ __('Menú') }}</div>
 
@@ -94,12 +97,16 @@
                     </div>
                     @endauth
 
-                    <div class="col-md-9">
+                    <!-- Contenido -->
+                    <div class="col-lg-10">
                         @yield('content')
                     </div>
                 </div>
             </div>
         </main>
     </div>
+
+    <!-- Livewire Scripts -->
+    @livewireScripts
 </body>
 </html>
