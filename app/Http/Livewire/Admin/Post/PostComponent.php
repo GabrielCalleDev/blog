@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Post;
 
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
@@ -16,7 +17,7 @@ class PostComponent extends Component
 
     public $view = 'create';
 
-    public $post_id, $post, $category_id, $image, $content, $author;
+    public $post_id, $post, $category_id, $image, $content, $author, $image_edit;
 
     public function render()
     {
@@ -28,28 +29,37 @@ class PostComponent extends Component
         ]);
     }
 
+    public function create(){
+        $this->reset();
+        $this->view = 'create';
+    }
+
     public function save()
     {
         $this->validate([
             'post'        => 'required',
             'category_id' => 'required',
             'content'     => 'required',
-            'image'       => 'required',
+            'image'       => 'image|required',
             'author'      => 'required'
         ]);
+
         Post::create([
             'post'        => $this->post,
             'category_id' => $this->category_id,
             'content'     => $this->content,
-            'image'       => $this->image->store('posts', 'public'),
+            'image'       => Storage::url($this->image->store('images/posts', 'public')),
             'author'      => $this->author
         ]);
+
         session()->flash('success', 'Post Created Successfully.');
         $this->reset();
     }
 
     public function edit($id)
     {
+        $this->reset('image');
+
         $post = Post::find($id);
 
         $this->post_id = $post->id;
@@ -57,9 +67,9 @@ class PostComponent extends Component
         $this->category_id = $post->category_id;
         $this->content = $post->content;
         $this->author = $post->author;
+        $this->image_edit = $post->image;
 
         $this->view = 'edit';
-
     }
 
     public function update()
@@ -78,8 +88,16 @@ class PostComponent extends Component
             'post'        => $this->post,
             'category_id' => $this->category_id,
             'content'     => $this->content,
-            'author'      => $this->author
+            'author'      => $this->author,
+            'image'       => $this->image
         ]);
+
+        if($this->image){
+            $post->update([
+                'image'       => Storage::url($this->image->store('images/posts', 'public')),
+            ]);
+        }
+
         session()->flash('info', 'Post Updated Successfully.');
         $this->reset();
     }
@@ -89,4 +107,5 @@ class PostComponent extends Component
         session()->flash('delete', 'Post Deleted Successfully.');
         Post::destroy($id);
     }
+
 }
