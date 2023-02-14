@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 
 class PostsController extends Controller
@@ -40,13 +41,12 @@ class PostsController extends Controller
         $post = new Post();
 
         if ($request->hasFile('image')){
-            $file            = $request->file('image');
-            $destinationPath = 'images/posts/';
-            $filename        = time().'-'.$file->getClientOriginalName();
-            $request->file('image')->move($destinationPath, $filename);
+            $file     = $request->file('image');
+            $filename = time().'-'.$file->getClientOriginalName();
               // Guardamos la ruta en la base de datos
-            $post->image = $destinationPath . $filename;
+            $post->image = Storage::url($file->storeAs('images/posts', $filename, 'public'));
         }
+
         $post->post        = $request->post;
         $post->category_id = $request->category_id;
         $post->content     = $request->content;
@@ -71,14 +71,14 @@ class PostsController extends Controller
         ]);
 
         $post = Post::find($id);
+              
         if ($request->hasFile('image')){
-            $file            = $request->file('image');
-            $destinationPath = 'images/posts/';
-            $filename        = time().'-'.$file->getClientOriginalName();
-            $request->file('image')->move($destinationPath, $filename);
+            $file     = $request->file('image');
+            $filename = time().'-'.$file->getClientOriginalName();
             // Guardamos la ruta en la base de datos
-            $post->image = $destinationPath . $filename;
+            $post->image = Storage::url($file->storeAs('images/posts', $filename, 'public'));
         }
+
         $post->post        = $request->post;
         $post->category_id = $request->category_id;
         $post->content     = $request->content;
