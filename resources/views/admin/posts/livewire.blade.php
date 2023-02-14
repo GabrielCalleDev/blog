@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card">
-    <div class="card-header">{{ __('Prueba de livewire') }}</div>
+    <div class="card-header">{{ __('Gestión de posts con livewire') }}</div>
 
     <div class="card-body">
 
