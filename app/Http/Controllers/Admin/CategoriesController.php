@@ -9,20 +9,24 @@ use Illuminate\Validation\Rule;
 
 class CategoriesController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function index()
+    {
         $categories = Category::all();
-        return view('admin.categories.index', [ 'categories' => $categories ]);
+        return view('admin.categories.index', ['categories' => $categories]);
     }
 
-    public function new(){
+    public function new()
+    {
         return view('admin.categories.new');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'category_name' => 'required|unique:categories|max:100',
         ]);
@@ -31,21 +35,23 @@ class CategoriesController extends Controller
 
         $category->category_name = $request->category_name;
         $category->save();
-        
+
         return redirect()->route('admin.categories.index');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $category = Category::find($id);
         return view('admin.categories.edit', compact('category'));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $request->validate([
             'category_name' => 'required|max:100',
             Rule::unique('categories', 'category_name')->ignore($request->category_name)
         ]);
-        
+
         $category = Category::find($id);
 
         $category->category_name = $request->input('category_name');
@@ -54,7 +60,8 @@ class CategoriesController extends Controller
         return redirect()->route('admin.categories.index')->with('success', 'Categoría actualizada con éxito.');
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         Category::destroy($id);
 
         return redirect()->route('admin.categories.index')->with('alert', 'Categoría eliminada con éxito.');
