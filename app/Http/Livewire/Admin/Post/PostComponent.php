@@ -37,6 +37,7 @@ class PostComponent extends Component
 
     public function create()
     {
+        $this->resetErrorBag();
         $this->reset();
         $this->view = 'create';
     }
@@ -66,6 +67,7 @@ class PostComponent extends Component
 
     public function edit($id)
     {
+        $this->resetErrorBag();
         $this->reset('image');
 
         $post = Post::find($id);

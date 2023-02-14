@@ -28,6 +28,7 @@ class CategoryComponent extends Component
 
     public function create()
     {
+        $this->resetErrorBag();
         $this->reset();
         $this->view = 'create';
     }
@@ -45,6 +46,8 @@ class CategoryComponent extends Component
 
     public function edit($id)
     {
+        $this->resetErrorBag();
+        
         $category = Category::find($id);
         
         $this->category_id   = $category->id;
