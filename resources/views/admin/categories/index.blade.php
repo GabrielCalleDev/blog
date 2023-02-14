@@ -17,6 +17,7 @@
         @endif
 
         <a href="{{ route('admin.categories.new') }}"><button class="btn btn-success">Crear categoría</button></a>
+        <a href="{{ route('admin.categories.livewire') }}"><button class="btn btn-outline-success">Gestionar con livewire</button></a>
         <hr>
         Listado de categorías
         <table class="table table-striped table-bordered text-center">

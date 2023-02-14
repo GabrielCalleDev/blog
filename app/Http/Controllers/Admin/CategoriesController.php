@@ -20,6 +20,11 @@ class CategoriesController extends Controller
         return view('admin.categories.index', ['categories' => $categories]);
     }
 
+    public function livewire()
+    {
+        return view('admin.categories.livewire');
+    }
+
     public function new()
     {
         return view('admin.categories.new');

@@ -28,6 +28,7 @@ Route::get('/admin', function(){
 | Categorías
 |--------------------------------------------------------------------------
 */
+Route::get('/admin/categories/livewire', [CategoriesController::class, 'livewire'])->name('admin.categories.livewire');
 Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('admin.categories.index');
 Route::get('/admin/categories/new', [CategoriesController::class, 'new'])->name('admin.categories.new');
 Route::post('/admin/categories/store', [CategoriesController::class, 'store'])->name('admin.categories.store');

@@ -88,3 +88,11 @@ return [
     ]
 ];
 ```
+
+
+### Livewire
+
+Gestión de Livewire
+
+php artisan make:livewire Admin/Post/PostComponent
+php artisan make:livewire Admin/Category/CategoryComponent
