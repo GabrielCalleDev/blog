@@ -11,25 +11,30 @@ use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
-    public function livewire(){
+    public function livewire()
+    {
         return view('admin.posts.livewire');
     }
 
-    public function index(){
+    public function index()
+    {
         $posts = Post::orderBy('id', 'desc')->get();
-        return view('admin.posts.index', [ 'posts' => $posts ]);
+        return view('admin.posts.index', ['posts' => $posts]);
     }
 
-    public function new(){
+    public function new()
+    {
         $categories = Category::all();
-        return view('admin.posts.new', [ 'categories' => $categories ]);
+        return view('admin.posts.new', ['categories' => $categories]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'post'        => 'required|max:255',
             'category_id' => 'required',
@@ -40,10 +45,10 @@ class PostsController extends Controller
 
         $post = new Post();
 
-        if ($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $file     = $request->file('image');
-            $filename = time().'-'.$file->getClientOriginalName();
-              // Guardamos la ruta en la base de datos
+            $filename = time() . '-' . $file->getClientOriginalName();
+            // Guardamos la ruta en la base de datos
             $post->image = Storage::url($file->storeAs('images/posts', $filename, 'public'));
         }
 
@@ -52,17 +57,19 @@ class PostsController extends Controller
         $post->content     = $request->content;
         $post->author      = $request->author;
         $post->save();
-        
+
         return redirect()->route('admin.posts.index');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $post       = Post::find($id);
         $categories = Category::all();
         return view('admin.posts.edit', compact('post', 'categories'));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $request->validate([
             'post'        => 'required|max:255',
             'category_id' => 'required',
@@ -71,10 +78,10 @@ class PostsController extends Controller
         ]);
 
         $post = Post::find($id);
-              
-        if ($request->hasFile('image')){
+
+        if ($request->hasFile('image')) {
             $file     = $request->file('image');
-            $filename = time().'-'.$file->getClientOriginalName();
+            $filename = time() . '-' . $file->getClientOriginalName();
             // Guardamos la ruta en la base de datos
             $post->image = Storage::url($file->storeAs('images/posts', $filename, 'public'));
         }
@@ -88,7 +95,8 @@ class PostsController extends Controller
         return redirect()->route('admin.posts.index')->with('success', 'Post actualizado con éxito.');
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         Post::destroy($id);
 
         return redirect()->route('admin.posts.index')->with('alert', 'Post eliminado con éxito.');
