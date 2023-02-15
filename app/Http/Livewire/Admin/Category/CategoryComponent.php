@@ -35,8 +35,6 @@ class CategoryComponent extends Component
 
     public function save()
     {
-        $this->validate();
-
         Category::create( $this->validate() );
 
         session()->flash('success', 'Categoría creada correctamente.');
@@ -47,19 +45,19 @@ class CategoryComponent extends Component
     public function edit($id)
     {
         $this->resetErrorBag();
-        
+
         $category = Category::find($id);
-        
+
         $this->category_id   = $category->id;
         $this->category_name = $category->category_name;
-        
+
         $this->view = 'edit';
     }
 
     public function update()
-    {   
+    {
         $category = Category::find($this->category_id);
-        
+
         // Si el campo a editar es el mismo, se ignora ya que hay una restricción unique
         if($this->category_name == $category->category_name ){
             $this->reset();
