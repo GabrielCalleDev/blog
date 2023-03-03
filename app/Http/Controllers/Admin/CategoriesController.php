@@ -16,8 +16,10 @@ class CategoriesController extends Controller
 
     public function index()
     {
-        $categories = Category::all();
-        return view('admin.categories.index', ['categories' => $categories]);
+        $categories = Category::select('category_name','id')->orderBy('category_name', 'asc')->get();
+        return view('admin.categories.index', [
+            'categories' => $categories
+        ]);
     }
 
     public function livewire()
@@ -44,17 +46,17 @@ class CategoriesController extends Controller
         return redirect()->route('admin.categories.index');
     }
 
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category = Category::find($id);
+        //$category = Category::find($id);
         return view('admin.categories.edit', compact('category'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'category_name' => 'required|max:100',
-            Rule::unique('categories', 'category_name')->ignore($request->category_name)
+            'category_name' => 'required|max:100|unique:categories,category_name,'.$id,
+            //Rule::unique('categories', 'category_name')->ignore($request->category_name)
         ]);
 
         $category = Category::find($id);
@@ -62,7 +64,9 @@ class CategoriesController extends Controller
         $category->category_name = $request->input('category_name');
         $category->save();
 
-        return redirect()->route('admin.categories.index')->with('success', 'Categoría actualizada con éxito.');
+        return redirect()
+                ->route('admin.categories.index')
+                ->with('success', 'Categoría actualizada con éxito.');
     }
 
     public function delete($id)

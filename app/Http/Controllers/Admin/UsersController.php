@@ -11,8 +11,7 @@ use App\Models\Role;
 class UsersController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
-        $this->middleware('role:admin');
+
     }
 
     public function index(){
@@ -42,7 +41,7 @@ class UsersController extends Controller
         $user->password = Hash::make($request->password);
         $user->role_id  = $request->role_id;
         $user->save();
-        
+
         return redirect()->route('admin.users.index');
     }
 
@@ -66,7 +65,7 @@ class UsersController extends Controller
         $user->name    = $request->name;
         $user->role_id = $request->role_id;
         $user->save();
-        
+
         return redirect()->route('admin.users.index')->with('success', 'Usuario actualizado con éxito.');
     }
 

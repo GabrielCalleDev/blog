@@ -18,20 +18,24 @@ class PostComponent extends Component
     public $view = 'create';
 
     public  $post_id,
-            $post, 
-            $category_id, 
-            $image, 
-            $content, 
-            $author, 
-            $image_edit;
-
+            $post,
+            $category_id,
+            $image,
+            $content,
+            $author,
+            $image_edit,
+            $categories = [];
+    public function mount()
+    {
+        $this->categories = Category::all();
+        $this->author = auth()->user()->name;
+    }
     public function render()
     {
         $posts      = Post::orderBy('id', 'desc')->paginate(6);
-        $categories = Category::all();
+
         return view('livewire.admin.post.post-component', [
-            'posts'      => $posts,
-            'categories' => $categories
+            'posts'      => $posts
         ]);
     }
 
@@ -61,7 +65,7 @@ class PostComponent extends Component
         ]);
 
         session()->flash('success', 'Post Created Successfully.');
-        
+
         $this->reset();
     }
 
@@ -90,7 +94,7 @@ class PostComponent extends Component
             'content'     => 'required',
             'author'      => 'required'
         ]);
-        
+
 
         $post = Post::find($this->post_id);
 
@@ -115,7 +119,7 @@ class PostComponent extends Component
     public function destroy($id)
     {
         session()->flash('delete', 'Post Deleted Successfully.');
-        
+
         Post::destroy($id);
     }
 
