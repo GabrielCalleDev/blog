@@ -25,17 +25,20 @@ class PostComponent extends Component
             $author,
             $image_edit,
             $categories = [];
+
     public function mount()
     {
-        $this->categories = Category::all();
         $this->author = auth()->user()->name;
     }
+
     public function render()
     {
-        $posts      = Post::orderBy('id', 'desc')->paginate(6);
+        $posts      = Post::orderBy('id', 'desc')->paginate(2);
+        $categories = Category::all();
 
         return view('livewire.admin.post.post-component', [
-            'posts'      => $posts
+            'posts'      => $posts,
+            'categories' => $categories
         ]);
     }
 

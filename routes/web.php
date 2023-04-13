@@ -58,13 +58,13 @@ Route::prefix('admin')->group(function () {
 | Usuarios
 |--------------------------------------------------------------------------
 */
-    Route::group(function () {
-        Route::get('/users', [UsersController::class, 'index'])->name('admin.users.index');
-        Route::get('/users/new', [UsersController::class, 'new'])->name('admin.users.new');
-        Route::post('/users/store', [UsersController::class, 'store'])->name('admin.users.store');
-        Route::get('/users/edit/{id}', [UsersController::class, 'edit'])->name('admin.users.edit');
-        Route::post('/users/update/{id}', [UsersController::class, 'update'])->name('admin.users.update');
-        Route::delete('/users/delete/{id}', [UsersController::class, 'delete'])->name('admin.users.delete');
-    })->middleware(['role:adnin']);
-})->middleware('auth');
+    Route::get('/users', [UsersController::class, 'index'])->name('admin.users.index');
+    Route::get('/users/new', [UsersController::class, 'new'])->name('admin.users.new');
+    Route::post('/users/store', [UsersController::class, 'store'])->name('admin.users.store');
+    Route::get('/users/edit/{id}', [UsersController::class, 'edit'])->name('admin.users.edit');
+    Route::post('/users/update/{id}', [UsersController::class, 'update'])->name('admin.users.update');
+    Route::delete('/users/delete/{id}', [UsersController::class, 'delete'])->name('admin.users.delete');
+
+})->middleware('auth')->middleware(['role:adnin']);
+
 Auth::routes();

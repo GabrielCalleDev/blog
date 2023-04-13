@@ -18,12 +18,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
+        $role = Role::where('name','admin')->first();
+
+        User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
-            'password' => Hash::make("administrador")
+            // 'password' => Hash::make("administrador"),
+            'password' => bcrypt('administrador'),
+            'role_id' => $role->id
         ]);
-        $role = Role::where('name','admim')->first();
 
     }
 }
